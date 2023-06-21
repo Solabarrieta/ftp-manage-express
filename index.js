@@ -29,7 +29,7 @@ async function apiSetConnection() {
 
 async function apiGetFile() {
   console.log('Ok1')
-  let response = await api.getFile('/prueba2.js', './uploads');
+  let response = await api.getFile('pepe/package.json', '/Users/oier/Documents/uni/TFG');
   return response;
 }
 
