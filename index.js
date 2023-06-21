@@ -2,24 +2,29 @@ import api from './api.js'
 
 const connectBtn = document.getElementById("connect-btn")
 connectBtn.addEventListener("click", apiSetConnection)
-const inputBtn = document.getElementById("input-file")
-console.log(inputBtn)
-inputBtn.addEventListener('change', (event) =>{
-  event.preventDefault()
-  const file = event.target.files[0]
-  apiPutFile(file)
+
+const fileOriginInput = document.getElementById('file-origin-input')
+const fileDestInput = document.getElementById('file-dest-input')
+let fileOriginPath = ''
+let fileDestPath = ''
+
+fileOriginInput.addEventListener('change', (event) => {
+  fileOriginPath = event.target.value
+  console.log('File origin: ', fileOriginPath)
 })
-const downloadBtn = document.getElementById('download-btn')
-downloadBtn.addEventListener('click', apiGetFile)
+
+fileDestInput.addEventListener('change', (event) => {
+  fileDestPath = event.target.value
+  console.log('File dest: ', fileDestPath)
+
+})
 
 
+const getRoutesBtn = document.getElementById('get-routes-btn')
 
-async function apiPutFile(file){
-  console.log(file)
-  let response = await api.putFile(file)
-  console.log(response)
-}
-
+getRoutesBtn.addEventListener('click', () => {
+  apiGetFile(fileOriginPath, fileDestPath)
+})
 
 
 async function apiSetConnection() {
@@ -27,9 +32,9 @@ async function apiSetConnection() {
   console.log(response);
 }
 
-async function apiGetFile() {
+async function apiGetFile(filePath) {
   console.log('Ok1')
-  let response = await api.getFile('pepe/package.json', '/Users/oier/Documents/uni/TFG');
+  let response = await api.getFile(filePath, '/Users/oier/Documents/uni/TFG');
   return response;
 }
 

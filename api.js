@@ -7,14 +7,6 @@ async function setConnection(){
   const response = await api.get("/connect-ftp");
   return response;
 }
-
-async function putFile(file){
-  console.log('Esto es una prueba: ',file)
-
-  const response = await api.post('/put-ftp', file);
-  return response
-}
-
 async function getFile(filePathOrigin, filePathDest) {
   console.log('Ok2')
   const options = {
@@ -34,6 +26,5 @@ async function getFile(filePathOrigin, filePathDest) {
 
 export default{
   setConnection,
-  putFile,
   getFile
 }

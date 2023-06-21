@@ -6,14 +6,27 @@
   <title>Prueba conexión ftp</title>
 </head>
 <body>
-  <h1>Hola</h1>
-  <button id="connect-btn" type="button">
-    Conectar a FTP
-  </button>
-  <button id="download-btn" type="button">
-    Descargar de ftp
-  </button>
-  <input id="input-file" type="file"/>
+  <h1>CRUD FTP</h1>
+  <div class="form-container">
+    <button id="connect-btn" type="button">
+      Conectar a FTP
+    </button>
+    <label>
+      <span>
+        Ruta fichero en FTP:
+      </span>
+      <input id="file-origin-input" type="text"/>
+    </label>
+    <label>
+      <span>
+        Ruta fichero en local:
+      </span>
+      <input id="file-dest-input" type="text"/>
+    </label>
+    <button id="get-routes-btn">
+      Recoger rutas
+    </button>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./index.js" type="module"></script>
 </body>
