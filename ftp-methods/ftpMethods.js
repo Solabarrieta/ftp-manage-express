@@ -1,7 +1,6 @@
 const Cliente = require('ftp')
 const client = new Cliente()
-const fs = require('fs')
-const path = require('path')
+const utils = require('../utils.js')
 
 //Messages for user
 const serverMsgs = require('../serverMessages.js')
@@ -40,16 +39,20 @@ function getFile(filePathOrigin, filePathDest){
     client.connect(credenciales)
     client.on('ready', function() {
       console.log(serverMsgs.connected)
-      const file = path.basename(filePathOrigin)
-      let destPath = filePathDest + "/" + file
+      let file = {
+        destPath: '',
+        fileName: ''
+      }
+      file.destPath = utils.getDestPath(filePathOrigin, filePathDest)
+      file.fileName = utils.getFileName(filePathOrigin)
       client.get('prueba2.js', function(err, stream) {
         if (err) {
           console.error(err)
           reject(err)
         }else{
-          stream.once('close', function() { client.end(); });
-          stream.pipe(fs.createWriteStream(destPath));
-          resolve({status: 'Ok'})
+          // stream.once('close', function() { client.end(); });
+          // stream.pipe(fs.createWriteStream(destPath));
+          resolve({status: 'Ok', file: file, stream: stream})
         }
       });
     });

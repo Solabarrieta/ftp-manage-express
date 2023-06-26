@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon backend.js",
     "connect": "node connectFtp.js",
+    "buckets": "node googleStorage.js",
     "lint": "eslint"
   },
   "keywords": [
@@ -17,6 +18,7 @@
   "author": "Oier Solabarrieta",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/storage": "^6.11.0",
     "axios": "^0.21.4",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
