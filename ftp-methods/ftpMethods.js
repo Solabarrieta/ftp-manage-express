@@ -34,7 +34,7 @@ function setConnection() {
   });
 }
 
-function getFile(filePathOrigin, filePathDest){
+function getFile(filePathOrigin){
   return new Promise((resolve, reject) => {
     client.connect(credenciales)
     client.on('ready', function() {

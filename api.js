@@ -7,15 +7,14 @@ async function setConnection(){
   const response = await api.get("/connect-ftp");
   return response;
 }
-async function getFile(filePathOrigin, filePathDest) {
+async function getFile(filePathOrigin) {
   console.log('Ok2')
   const options = {
     headers: {
         'content-type': 'application/json',
     },
     params: {
-      filePathOrigin: filePathOrigin,
-      filePathDest: filePathDest
+      filePathOrigin: filePathOrigin
     }
   };
 

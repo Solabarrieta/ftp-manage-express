@@ -31,8 +31,8 @@ app.get('/connect-ftp', (req, res) => {
 });
 
 app.get('/get-file', urlencodedParser,(req, res) => {
-  let {filePathOrigin, filePathDest} = req.query
-  ftpMethods.getFile(filePathOrigin,filePathDest).then((data) =>{
+  let {filePathOrigin} = req.query
+  ftpMethods.getFile(filePathOrigin).then((data) =>{
     console.log('Respuesta: ', data)
     let {fileRequest_status, file, stream} = data
     if(fileRequest_status === "Ok"){
