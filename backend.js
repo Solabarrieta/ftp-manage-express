@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const ftpMethods = require('./ftp-methods/ftpMethods');
 const googleStorage = require('./googleStorage');
+const utils = require('./utils.js')
 
 
 
@@ -37,7 +38,8 @@ app.get('/get-file', urlencodedParser,(req, res) => {
     let {fileRequest_status, file, stream} = data
     if(fileRequest_status === "Ok"){
       console.log('status Ok')
-      googleStorage.streamUpload(stream, file.fileName)
+      let fileName = utils.getFileName(filePathOrigin)
+      googleStorage.streamUpload(stream, fileName)
       .then(() => {
         res.send({upload_status: 'Ok'})
       })

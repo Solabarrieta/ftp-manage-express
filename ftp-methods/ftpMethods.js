@@ -39,15 +39,13 @@ function getFile(filePathOrigin){
     client.connect(credenciales)
     client.on('ready', function() {
       console.log(serverMsgs.connected)
-      let file = {}
       // file.destPath = utils.getDestPath(filePathOrigin, filePathDest)
-      file.fileName = utils.getFileName(filePathOrigin)
       client.get(filePathOrigin, function(err, stream) {
         if (err) {
           console.error(err)
           reject(err)
         }else{
-          resolve({fileRequest_status: 'Ok', file: file, stream: stream})
+          resolve({fileRequest_status: 'Ok', stream: stream})
         }
       });
     });
