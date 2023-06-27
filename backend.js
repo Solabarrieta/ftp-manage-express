@@ -31,14 +31,17 @@ app.get('/connect-ftp', (req, res) => {
 });
 
 app.get('/get-file', urlencodedParser,(req, res) => {
-  console.log('Ok3')
   let {filePathOrigin, filePathDest} = req.query
   ftpMethods.getFile(filePathOrigin,filePathDest).then((data) =>{
-    console.log(data)
-    let {status, file, stream} = data
-    if(status === "Ok"){
+    console.log('Respuesta: ', data)
+    let {fileRequest_status, file, stream} = data
+    if(fileRequest_status === "Ok"){
+      console.log('status Ok')
       googleStorage.streamUpload(stream, file.fileName)
-      res.send(data)
+      .then(() => {
+        res.send({upload_status: 'Ok'})
+      })
+      .catch(console.error)
     }
   } ).catch((err) => {
     console.error(err)

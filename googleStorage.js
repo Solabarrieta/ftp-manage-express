@@ -8,13 +8,6 @@ const googleStorage = new Storage({
 })
 // googleStorage.getBuckets().then(buckets => console.log(buckets))
 
-// let contents = 'this is the file content'
-
-// const bucket = getBucket();
-// const file = bucket.file('prueba.txt')
-// const passThroughStream = new stream.PassThrough()
-// passThroughStream.write(contents)
-// passThroughStream.end()
 
 
 function getBucket() {
@@ -24,22 +17,10 @@ function getBucket() {
 
 async function streamUpload(stream, filePath) {
   const bucket = getBucket()
-  const file = bucket.file(filePath)
-  return new Promise((resolve,reject) => {
-
-    stream.pipe(file.createWriteStream()).on('finish', (err, data) => {
-      if (err) {
-        reject(err)
-      }else{
-        resolve(data)
-      }
-    })
-  })
+  let destPath = path.join('/one/', filePath)
+  const file = bucket.file(destPath)
+  stream.pipe(file.createWriteStream()).on('finish', () => {console.log('Uploaded')})
 }
-
-// streamUpload(passThroughStream, 'prueba2.txt')
-// .then(() => console.log('Ok'))
-// .catch(() => console.log('error'))
 
 
 module.exports = {

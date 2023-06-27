@@ -32,8 +32,9 @@ async function apiSetConnection() {
   console.log(response);
 }
 
-async function apiGetFile(filePath) {
+async function apiGetFile(filePath, fileDestPath) {
   console.log('Ok1')
+  console.log(filePath)
   let response = await api.getFile(filePath, '/Users/oier/Documents/uni/TFG');
   return response;
 }
