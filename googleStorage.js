@@ -17,7 +17,8 @@ function getBucket() {
 
 async function streamUpload(stream, filePath) {
   const bucket = getBucket()
-  let destPath = path.join('/one/', filePath)
+  let destPath = path.join('Users', 'one', filePath)
+  console.log(destPath)
   const file = bucket.file(destPath)
   stream.pipe(file.createWriteStream()).on('finish', () => {console.log('Uploaded')})
 }
